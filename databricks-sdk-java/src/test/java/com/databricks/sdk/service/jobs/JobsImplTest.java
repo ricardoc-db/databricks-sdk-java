@@ -1,68 +1,86 @@
 package com.databricks.sdk.service.jobs;
 
 import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import com.databricks.sdk.core.ApiClient;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
 
-@ExtendWith(MockitoExtension.class)
 public class JobsImplTest {
-  @Mock ApiClient apiClient;
 
-  /*
-   * API 2.1 pinned endpoints check
-   * See: https://databricks.atlassian.net/browse/JOBS-19304
-   */
+  ApiClient apiClient;
+
+  @BeforeEach
+  public void beforeEach() {
+    apiClient = Mockito.mock(ApiClient.class);
+  }
 
   @Test
   public void testJobsCreateUsesApi2_1() {
+    String expectedPath = "/api/2.1/jobs/create";
+    when(apiClient.POST(eq(expectedPath), any(), any(), any())).thenReturn(null);
+
     JobsService jobs = new JobsImpl(apiClient);
     jobs.create(new CreateJob());
 
-    Mockito.verify(apiClient).POST(eq("/api/2.1/jobs/create"), any(), any(), any());
+    verify(apiClient).POST(eq(expectedPath), any(), any(), any());
   }
 
   @Test
   public void testJobsGetUsesApi2_1() {
+    String expectedPath = "/api/2.1/jobs/get";
+    when(apiClient.GET(eq(expectedPath), any(), any(), any())).thenReturn(null);
+
     JobsService jobs = new JobsImpl(apiClient);
     jobs.get(new GetJobRequest());
 
-    Mockito.verify(apiClient).GET(eq("/api/2.1/jobs/get"), any(), any(), any());
+    verify(apiClient).GET(eq(expectedPath), any(), any(), any());
   }
 
   @Test
   public void testJobsListUsesApi2_1() {
+    String expectedPath = "/api/2.1/jobs/list";
+    when(apiClient.GET(eq(expectedPath), any(), any(), any())).thenReturn(null);
+
     JobsService jobs = new JobsImpl(apiClient);
     jobs.list(new ListJobsRequest());
 
-    Mockito.verify(apiClient).GET(eq("/api/2.1/jobs/list"), any(), any(), any());
+    verify(apiClient).GET(eq(expectedPath), any(), any(), any());
   }
 
   @Test
   public void testJobsUpdateUsesApi2_1() {
+    String expectedPath = "/api/2.1/jobs/update";
+    when(apiClient.POST(eq(expectedPath), any(), any(), any())).thenReturn(null);
+
     JobsService jobs = new JobsImpl(apiClient);
     jobs.update(new UpdateJob());
 
-    Mockito.verify(apiClient).POST(eq("/api/2.1/jobs/update"), any(), any(), any());
+    verify(apiClient).POST(eq(expectedPath), any(), any(), any());
   }
 
   @Test
   public void testJobsResetUsesApi2_1() {
+    String expectedPath = "/api/2.1/jobs/reset";
+    when(apiClient.POST(eq(expectedPath), any(), any(), any())).thenReturn(null);
+
     JobsService jobs = new JobsImpl(apiClient);
     jobs.reset(new ResetJob());
 
-    Mockito.verify(apiClient).POST(eq("/api/2.1/jobs/reset"), any(), any(), any());
+    verify(apiClient).POST(eq(expectedPath), any(), any(), any());
   }
 
   @Test
   public void testJobsListRunsUsesApi2_1() {
+    String expectedPath = "/api/2.1/jobs/runs/list";
+    when(apiClient.GET(eq(expectedPath), any(), any(), any())).thenReturn(null);
+
     JobsService jobs = new JobsImpl(apiClient);
     jobs.listRuns(new ListRunsRequest());
 
-    Mockito.verify(apiClient).GET(eq("/api/2.1/jobs/runs/list"), any(), any(), any());
+    verify(apiClient).GET(eq(expectedPath), any(), any(), any());
   }
 }
