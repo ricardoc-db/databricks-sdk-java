@@ -5,21 +5,14 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.databricks.sdk.core.ApiClient;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 public class JobsImplTest {
 
-  ApiClient apiClient;
-
-  @BeforeEach
-  public void beforeEach() {
-    apiClient = Mockito.mock(ApiClient.class);
-  }
-
   @Test
   public void testJobsCreateUsesApi2_1() {
+    ApiClient apiClient = Mockito.mock(ApiClient.class);
     String expectedPath = "/api/2.1/jobs/create";
     when(apiClient.POST(eq(expectedPath), any(), any(), any())).thenReturn(null);
 
@@ -31,6 +24,7 @@ public class JobsImplTest {
 
   @Test
   public void testJobsGetUsesApi2_1() {
+    ApiClient apiClient = Mockito.mock(ApiClient.class);
     String expectedPath = "/api/2.1/jobs/get";
     when(apiClient.GET(eq(expectedPath), any(), any(), any())).thenReturn(null);
 
@@ -42,6 +36,7 @@ public class JobsImplTest {
 
   @Test
   public void testJobsListUsesApi2_1() {
+    ApiClient apiClient = Mockito.mock(ApiClient.class);
     String expectedPath = "/api/2.1/jobs/list";
     when(apiClient.GET(eq(expectedPath), any(), any(), any())).thenReturn(null);
 
@@ -53,6 +48,7 @@ public class JobsImplTest {
 
   @Test
   public void testJobsUpdateUsesApi2_1() {
+    ApiClient apiClient = Mockito.mock(ApiClient.class);
     String expectedPath = "/api/2.1/jobs/update";
     when(apiClient.POST(eq(expectedPath), any(), any(), any())).thenReturn(null);
 
@@ -64,6 +60,7 @@ public class JobsImplTest {
 
   @Test
   public void testJobsResetUsesApi2_1() {
+    ApiClient apiClient = Mockito.mock(ApiClient.class);
     String expectedPath = "/api/2.1/jobs/reset";
     when(apiClient.POST(eq(expectedPath), any(), any(), any())).thenReturn(null);
 
@@ -75,6 +72,7 @@ public class JobsImplTest {
 
   @Test
   public void testJobsListRunsUsesApi2_1() {
+    ApiClient apiClient = Mockito.mock(ApiClient.class);
     String expectedPath = "/api/2.1/jobs/runs/list";
     when(apiClient.GET(eq(expectedPath), any(), any(), any())).thenReturn(null);
 
